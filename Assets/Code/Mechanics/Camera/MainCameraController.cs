@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MainCameraController : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class MainCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseHPos = Input.mousePosition.x;
+        float mouseHPos = InputSystemManager.Instance.inputActions.Player.Mouse.ReadValue<Vector2>().x;
         float screnSize = Screen.width / 2;
 
         direction = (mouseHPos > screnSize + offset) ? 1.0f :

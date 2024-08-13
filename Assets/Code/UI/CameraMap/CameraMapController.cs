@@ -27,15 +27,15 @@ public class CameraMapController : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if(isActive && Input.GetKeyDown(KeyCode.Space))
-        {
-            isActive = false;
-            this.gameObject.SetActive(false);
-            mainCamera.gameObject.SetActive(true);
-        }
-    }
+    //private void Update()
+    //{
+    //    if(isActive && Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        isActive = false;
+    //        this.gameObject.SetActive(false);
+    //        mainCamera.gameObject.SetActive(true);
+    //    }
+    //}
 
     public void DeactivateCameras()
     {
