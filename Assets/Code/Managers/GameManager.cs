@@ -20,26 +20,4 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-
-    [SerializeField] private CameraMapController cmController;
-    [SerializeField] public GameObject mainCamera;
-
-    private void Start()
-    {
-        InputSystemManager.Instance.inputActions.Player.CameraShortcut.performed += HandleCamera;
-    }
-
-    private void HandleCamera(InputAction.CallbackContext context)
-    {
-        if (!cmController.isActive)
-        {
-            cmController.gameObject.SetActive(true);
-            cmController.isActive = true;
-        }
-        else
-        {
-            cmController.gameObject.SetActive(false);
-            cmController.isActive = false;
-        }
-    }
 }

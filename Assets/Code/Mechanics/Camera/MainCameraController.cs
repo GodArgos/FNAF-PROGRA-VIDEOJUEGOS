@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class MainCameraController : MonoBehaviour
 {
     [Header("VARIABLES")]
+    [SerializeField] private float timeToMove = 3.0f;
     [SerializeField] private float camSpeed = 5.0f;
     [SerializeField] private float offset = 10.0f;
     [SerializeField] private float limit = 35.0f;
@@ -22,6 +23,18 @@ public class MainCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(timeToMove >= 0)
+        {
+            timeToMove -= Time.deltaTime;
+        }
+        else
+        {
+            MoveCamera();
+        }
+    }
+
+    private void MoveCamera()
+    {
         float mouseHPos = InputSystemManager.Instance.inputActions.Player.Mouse.ReadValue<Vector2>().x;
         float screnSize = Screen.width / 2;
 
@@ -30,6 +43,6 @@ public class MainCameraController : MonoBehaviour
 
         moveDir += camSpeed * direction * Time.deltaTime;
         moveDir = Mathf.Clamp(moveDir, -limit, limit);
-        transform.eulerAngles = new Vector3 (0, moveDir, 0);
+        transform.eulerAngles = new Vector3(0, moveDir, 0);
     }
 }

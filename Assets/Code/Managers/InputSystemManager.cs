@@ -9,7 +9,6 @@ public class InputSystemManager : MonoBehaviour
     public static InputSystemManager Instance { get; private set; }
     public void Awake()
     {
-        inputActions = new DefaultControls();
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -18,7 +17,7 @@ public class InputSystemManager : MonoBehaviour
         {
             Instance = this;
         }
-        
+        inputActions = new DefaultControls();
     }
     #endregion
 
@@ -35,12 +34,4 @@ public class InputSystemManager : MonoBehaviour
     #endregion
 
     public DefaultControls inputActions;
-
-    private void Update()
-    {
-        if (inputActions == null)
-        {
-            inputActions = new DefaultControls();
-        }
-    }
 }

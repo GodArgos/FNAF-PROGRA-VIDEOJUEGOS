@@ -10,7 +10,7 @@ public class CameraButtonController : MonoBehaviour
     
     public void ChangeCamera()
     {
-        mController.currentCamera = this.designedCamera;
+        mController.currentCamera = designedCamera;
         mController.DeactivateCameras();
     }
 }

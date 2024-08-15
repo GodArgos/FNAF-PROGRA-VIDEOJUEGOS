@@ -10,47 +10,51 @@ public class CameraMapController : MonoBehaviour
     [SerializeField] private int cameraIndex;
     [SerializeField] public bool isActive = false;
 
-    [SerializeField] private GameObject mainCamera;
+    private GameObject mainCamera;
 
     private void Start()
     {
-        GameManager gameManager = GameManager.Instance;
-        mainCamera = gameManager.mainCamera;
+        mainCamera = CameraManager.Instance.mainCamera.gameObject;
 
         foreach (var cam in cameras)
         {
             cam.GetComponent<Camera>().enabled = false;
+            cam.GetComponent<AudioListener>().enabled = false;
         }
 
         ConnectButtonsToCameras();
 
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
-
-    //private void Update()
-    //{
-    //    if(isActive && Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        isActive = false;
-    //        this.gameObject.SetActive(false);
-    //        mainCamera.gameObject.SetActive(true);
-    //    }
-    //}
 
     public void DeactivateCameras()
     {
-        mainCamera.gameObject.SetActive(false);
-        foreach (GameObject go in this.cameras)
+        mainCamera.SetActive(false);
+        foreach (GameObject go in cameras)
         {
             if (go == currentCamera)
             {
                 go.GetComponent<Camera>().enabled = true;
+                go.GetComponent<AudioListener>().enabled = true;
             }
             else
             {
                 go.GetComponent<Camera>().enabled = false;
+                go.GetComponent<AudioListener>().enabled = false;
             }
         }
+    }
+
+    public void ActivateMainCamera()
+    { 
+        foreach (GameObject go in cameras)
+        {
+            go.GetComponent<Camera>().enabled = false;
+            go.GetComponent<AudioListener>().enabled = false;
+        }
+
+        mainCamera.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     private void ConnectButtonsToCameras()
